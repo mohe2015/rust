@@ -2910,7 +2910,8 @@ impl<'a> Parser<'a> {
         }
     }
 
-    fn parse_for_head(&mut self) -> PResult<'a, (Box<Pat>, Box<Expr>)> {
+    // Public because it will be used in rustfmt forks such as https://github.com/tucant/rustfmt for custom `for` expressions.
+    pub fn parse_for_head(&mut self) -> PResult<'a, (Box<Pat>, Box<Expr>)> {
         let begin_paren = if self.token == token::OpenParen {
             // Record whether we are about to parse `for (`.
             // This is used below for recovery in case of `for ( $stuff ) $block`
